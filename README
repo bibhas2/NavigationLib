@@ -36,6 +36,7 @@ public class MainActivity extends NavigationActivity {
         }
 }
 
-To push a new fragment to the top of the stack, call pushFragment(Fragment f) 
-of the NavigationActivity class. A fragment can obtain it's parent 
-NavigationActivity by calling getNavigationActivity() of NavigationFragment.
+To push a new fragment to the top of the stack, call 
+pushFragment(NavigationFragment f) of the NavigationActivity class. 
+A fragment can obtain it's parent NavigationActivity by calling 
+getNavigationActivity() of NavigationFragment.
