@@ -16,12 +16,10 @@ public class NavigationActivity extends Activity implements OnBackStackChangedLi
 		
 		setContentView(R.layout.navigation_activity_layout);
 		//Set the root fragment
-		rootFragment.setNavigationActivity(this);
 		getFragmentManager().beginTransaction()
 			.add(R.id.navigation_container, rootFragment).commit();
 
-		setTitle(rootFragment.getTitle());
-
+		//Listen for backstack change events
 		getFragmentManager().addOnBackStackChangedListener(this);
 		
 		this.rootFragment = rootFragment; 
@@ -30,15 +28,13 @@ public class NavigationActivity extends Activity implements OnBackStackChangedLi
 	public void onBackStackChanged() {
 		FragmentManager mgr = getFragmentManager();
 		int count = mgr.getBackStackEntryCount();
-		
+		//If there is nothing in backstack, do not show the Up button
 		if (count == 0) {
 			getActionBar().setDisplayHomeAsUpEnabled(false);
 		}
 	}
 	
 	public void pushFragment(NavigationFragment f) {
-		f.setNavigationActivity(this);
-		
 		FragmentManager mgr = getFragmentManager();
 		FragmentTransaction t = mgr.beginTransaction();
 		
@@ -46,7 +42,7 @@ public class NavigationActivity extends Activity implements OnBackStackChangedLi
 		t.addToBackStack(null);
 		t.commit();
 		
-		setTitle(f.getTitle());
+		//Show the Up button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 	public void popFragment() {
@@ -54,6 +50,7 @@ public class NavigationActivity extends Activity implements OnBackStackChangedLi
 	}
 	@Override
 	public boolean onNavigateUp() {
+		//When Up button is clicked, pop the backstack
 		popFragment();
 		
 		return true;

@@ -3,14 +3,10 @@ package com.mobiarch.android;
 import android.app.Fragment;
 
 public abstract class NavigationFragment extends Fragment {
-	private NavigationActivity navigationActivity;
 	private String title;
 
 	public NavigationActivity getNavigationActivity() {
-		return navigationActivity;
-	}
-	public void setNavigationActivity(NavigationActivity navigationActivity) {
-		this.navigationActivity = navigationActivity;
+		return (NavigationActivity) getActivity();
 	}
 	public String getTitle() {
 		return title;
@@ -21,7 +17,7 @@ public abstract class NavigationFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		
-		navigationActivity.setTitle(getTitle());
+		//Set the title of the activity to the top most fragment in the stack
+		getNavigationActivity().setTitle(getTitle());
 	}
 }
