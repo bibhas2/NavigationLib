@@ -2,7 +2,7 @@
 Android provides two ways of doing navigation:
 
 1. Using activities. In this scheme, your code launches new activity to move forward. User clicks the back button to move back in the stack.
-2. Using fragment backstack. In this scheme, you add a new fragment to the activity's and then push the current state to the back stack. User clicks the back button to pop the back state to go back to the previous state. This effectively removes the top most (last added) fragment.
+2. Using fragment backstack. In this scheme, you add a new fragment to the activity's and then push the current state to the back stack. When the user taps the hardware back button Android pops the back stack to go back to the previous state. This effectively removes the top most (last added) fragment.
 
 The fragment based approach works faster since new activities are not 
 created and destroyed as you move forward and backward respectively. 
@@ -10,8 +10,8 @@ This approach also closely resembles the way iOS UINavigationController works. E
 
 The purpose of this library is to fill in a few holes left in the fragment API
 to fully implement a fragment based navigation. These missing features are:
-	- Show an Up (or Back) button on top left corner of the action bar if back stack can be navigated back.
-	- Pop the back stack when the Up button is clicked.
+	- Show an Up button on top left corner of the action bar if back stack can be navigated back. User can tap this to go back in addition to the hardware back button.
+	- Pop the back stack when the Up button is clicked. The hardware back button click is handled by Android.
 	- Hide the last added fragment when a new fragment is added. Otherwise the previously added fragments will be still visible and accept user input.
 	- Change the title shown on the action bar based on the fragment that is at the top of the stack.
 
