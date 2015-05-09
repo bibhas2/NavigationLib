@@ -20,4 +20,10 @@ public class PageB extends NavigationFragment {
 		
 		return inflater.inflate(R.layout.page_b, container, false);
 	}
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i("MOBIARCH", "Page B: onDestroy");
+    }
+
 }

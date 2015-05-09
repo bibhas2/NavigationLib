@@ -1,15 +1,20 @@
 package com.mobiarch.android;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentManager.OnBackStackChangedListener;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
 public class NavigationActivity extends Activity implements OnBackStackChangedListener  {
 	private NavigationFragment rootFragment;
-	
+    Fragment topFragment = null;
+
 	protected void onCreate(Bundle savedInstanceState, NavigationFragment rootFragment) {
 
 		super.onCreate(savedInstanceState);
@@ -18,7 +23,7 @@ public class NavigationActivity extends Activity implements OnBackStackChangedLi
 		//Set the root fragment
 		getFragmentManager().beginTransaction()
 			.add(R.id.navigation_container, rootFragment).commit();
-
+        topFragment = rootFragment;
 		//Listen for backstack change events
 		getFragmentManager().addOnBackStackChangedListener(this);
 		
@@ -37,8 +42,9 @@ public class NavigationActivity extends Activity implements OnBackStackChangedLi
 	public void pushFragment(NavigationFragment f) {
 		FragmentManager mgr = getFragmentManager();
 		FragmentTransaction t = mgr.beginTransaction();
-		
-		t.replace(R.id.navigation_container, f);
+
+        t.hide(topFragment);
+        t.add(R.id.navigation_container, f);
 		t.addToBackStack(null);
 		t.commit();
 		
@@ -46,7 +52,7 @@ public class NavigationActivity extends Activity implements OnBackStackChangedLi
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 	public void popFragment() {
-		getFragmentManager().popBackStack();
+        getFragmentManager().popBackStack();
 	}
 	@Override
 	public boolean onNavigateUp() {

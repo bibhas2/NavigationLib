@@ -26,10 +26,16 @@ public class PageA extends NavigationFragment {
 		b.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.i("MOBIARCH", "Opening fragment B");
-				getNavigationActivity().pushFragment(new PageB());
+				//Log.i("MOBIARCH", "Opening fragment B");
+				getNavigationActivity().pushFragment(new PageA());
 			}
 		});
 		return v;
 	}
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i("MOBIARCH", "Page A: onDestroy");
+    }
 }
