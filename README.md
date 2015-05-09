@@ -10,10 +10,11 @@ This approach also closely resembles the way iOS UINavigationController works. E
 
 The purpose of this library is to fill in a few holes left in the fragment API
 to fully implement a fragment based navigation. These missing features are:
-	- Show an Up button on top left corner of the action bar if back stack can be navigated back. User can tap this to go back in addition to the hardware back button.
-	- Pop the back stack when the Up button is clicked. The hardware back button click is handled by Android.
-	- Hide the last added fragment when a new fragment is added. Otherwise the previously added fragments will be still visible and accept user input.
-	- Change the title shown on the action bar based on the fragment that is at the top of the stack.
+
+- Show an Up button on top left corner of the action bar if back stack can be navigated back. User can tap this to go back in addition to the hardware back button.
+- Pop the back stack when the Up button is clicked. The hardware back button click is handled by Android.
+- Hide the last added fragment when a new fragment is added. Otherwise the previously added fragments will be still visible and accept user input.
+- Change the title shown on the action bar based on the fragment that is at the top of the stack.
 
 ##Usage
 To create a fragment class, extend NavigationFragment. 
